@@ -1,0 +1,14 @@
+{{- $src := (.Get "src") | relURL -}}
+{{- $alt := .Get "alt" -}}
+{{- $caption := .Get "caption" -}}
+{{- $width := .Get "width" | default "100%" -}}
+<figure class="report-image" style="margin: 1.5rem auto 2rem; text-align: center;">
+  <img src="{{ $src | safeURL }}"
+       alt="{{ $alt }}"
+       loading="lazy"
+       decoding="async"
+       style="display: block; width: {{ $width }}; max-width: 100%; height: auto; margin: 0 auto;">
+  {{- with $caption }}
+  <figcaption style="margin-top: 0.6rem; font-style: italic;">{{ . }}</figcaption>
+  {{- end }}
+</figure>

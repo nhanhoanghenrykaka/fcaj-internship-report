@@ -1,0 +1,11 @@
+{{- $destination := .Destination -}}
+{{- $isRemote := or (hasPrefix $destination "http://") (hasPrefix $destination "https://") (hasPrefix $destination "data:") -}}
+{{- $src := $destination -}}
+{{- if not $isRemote -}}
+  {{- $src = $destination | relURL -}}
+{{- end -}}
+<img src="{{ $src | safeURL }}"
+     alt="{{ .Text }}"
+     {{- with .Title }} title="{{ . }}"{{ end -}}
+     loading="lazy"
+     decoding="async">
